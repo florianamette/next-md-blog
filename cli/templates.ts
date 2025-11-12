@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 /**
  * Get the path to the templates directory
@@ -9,9 +8,6 @@ import { fileURLToPath } from 'url';
  * @returns Path to templates directory
  */
 export function getTemplatesDir(): string {
-  // In ES modules, use import.meta.url to get the current file's directory
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
   // __dirname points to dist/cli when compiled, so templates are at dist/cli/templates
   return path.join(__dirname, 'templates');
 }
