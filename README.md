@@ -26,7 +26,7 @@ npm install @florianamette/next-md-blog
 Run the initialization command in your Next.js project root:
 
 ```bash
-npx @florianamette/next-md-blog-init
+npx @florianamette/next-md-blog-cli
 ```
 
 This will:
@@ -35,16 +35,10 @@ This will:
 - ✅ Create Next.js routes for `/blog/[slug]` and `/blogs`
 - ✅ Set up OG image using Next.js file convention (`opengraph-image.tsx`)
 - ✅ Configure SEO metadata generation
+- ✅ Automatically install required packages (`@florianamette/next-md-blog`, `@tailwindcss/typography`, `@vercel/og`)
+- ✅ Automatically update `globals.css` with typography plugin and dark mode variant
 
-### 2. Install OG Image Dependencies (Optional but Recommended)
-
-For dynamic OG image generation:
-
-```bash
-npm install @vercel/og
-```
-
-### 3. Add your blog posts
+### 2. Add your blog posts
 
 Create markdown (`.md`) or MDX (`.mdx`) files in the `posts/` folder. Each file should be named with the slug you want to use (e.g., `my-post.md` or `my-post.mdx` for `/blog/my-post`).
 
@@ -71,19 +65,22 @@ This is the content of my blog post written in **markdown**.
 - Frontmatter support
 ```
 
-### 4. Configure SEO Settings
+### 3. Configure SEO Settings
 
-Update the SEO configuration in your blog post page:
+The CLI creates a `next-md-blog.config.ts` file in your project root. Update it with your SEO settings:
 
 ```tsx
-// app/blog/[slug]/page.tsx
-const SEO_CONFIG = {
+// next-md-blog.config.ts
+import { createConfig } from '@florianamette/next-md-blog';
+
+export default createConfig({
   siteName: 'My Blog',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
   defaultAuthor: 'Your Name',
   twitterHandle: '@yourhandle',
+  defaultLang: 'en',
   // OG images are automatically generated via opengraph-image.tsx file convention
-};
+});
 ```
 
 ## 📖 Complete Example
@@ -97,25 +94,17 @@ import { getBlogPost, getAllBlogPosts, generateBlogPostMetadata } from '@florian
 import { MarkdownContent } from '@florianamette/next-md-blog';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-
-// Configure your SEO settings
-const SEO_CONFIG = {
-  siteName: 'My Blog',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
-  defaultAuthor: 'Your Name',
-  twitterHandle: '@yourhandle',
-  // OG images are automatically generated via opengraph-image.tsx file convention
-};
+import blogConfig from '@/next-md-blog.config';
 
 export async function generateStaticParams() {
-  const posts = await getAllBlogPosts();
+  const posts = await getAllBlogPosts({ config: blogConfig });
   return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getBlogPost(params.slug);
+  const post = await getBlogPost(params.slug, { config: blogConfig });
 
   if (!post) {
     return {
@@ -123,29 +112,39 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  return generateBlogPostMetadata(post, SEO_CONFIG);
+  return generateBlogPostMetadata(post, blogConfig);
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const post = await getBlogPost(params.slug);
+  const post = await getBlogPost(params.slug, { config: blogConfig });
 
   if (!post) {
     notFound();
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <article>
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:bg-black">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-4xl">
+        <article className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl overflow-hidden">
+          <div className="px-6 sm:px-8 pt-8 pb-6 border-b border-neutral-200 dark:border-neutral-700">
         {post.frontmatter.title && (
-          <h1 className="text-4xl font-bold mb-4">{post.frontmatter.title}</h1>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white mb-6 leading-tight">
+                {post.frontmatter.title}
+              </h1>
         )}
         {post.frontmatter.date && (
-          <p className="text-gray-600 mb-8">{post.frontmatter.date}</p>
+              <p className="text-neutral-600 dark:text-neutral-400 mb-8">
+                {new Date(post.frontmatter.date).toLocaleDateString()}
+              </p>
         )}
-        <div className="prose prose-lg max-w-none">
+          </div>
+          <div className="px-6 sm:px-8 py-8">
+            <div className="prose prose-lg dark:prose-invert max-w-none">
           <MarkdownContent content={post.content} />
+            </div>
         </div>
       </article>
+      </div>
     </div>
   );
 }
@@ -157,39 +156,50 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 import { getAllBlogPosts, generateBlogListMetadata } from '@florianamette/next-md-blog';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-
-const SEO_CONFIG = {
-  siteName: 'My Blog',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
-};
+import blogConfig from '@/next-md-blog.config';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const posts = await getAllBlogPosts();
-  return generateBlogListMetadata(posts, SEO_CONFIG);
+  const posts = await getAllBlogPosts({ config: blogConfig });
+  return generateBlogListMetadata(posts, blogConfig);
 }
 
 export default async function BlogsPage() {
-  const posts = await getAllBlogPosts();
+  const posts = await getAllBlogPosts({ config: blogConfig });
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
-      <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:bg-black">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-5xl">
+        <div className="mb-12">
+          <h1 className="text-4xl sm:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+            Blog Posts
+          </h1>
+          <p className="text-neutral-600 dark:text-neutral-400 text-lg">
+            {posts.length} {posts.length === 1 ? 'post' : 'posts'} found
+          </p>
+        </div>
+        <div className="grid gap-6 sm:gap-8">
         {posts.map((post) => (
-          <article key={post.slug} className="border-b pb-6">
-            <Link href={`/blog/${post.slug}`}>
-              <h2 className="text-2xl font-semibold mb-2 hover:text-primary">
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
+              <article className="bg-white dark:bg-neutral-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 dark:hover:border-blue-400">
+                <div className="p-6 sm:p-8">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {post.frontmatter?.title || post.slug}
               </h2>
+                  {post.frontmatter?.description && (
+                    <p className="text-neutral-600 dark:text-neutral-300 mb-4 text-lg leading-relaxed">
+                      {post.frontmatter.description}
+                    </p>
+                  )}
+                  {post.frontmatter?.date && (
+                    <p className="text-neutral-500 dark:text-neutral-400 text-sm">
+                      {new Date(post.frontmatter.date).toLocaleDateString()}
+                    </p>
+                  )}
+                </div>
+              </article>
             </Link>
-            {post.frontmatter?.date && (
-              <p className="text-gray-600 text-sm mb-2">{post.frontmatter.date}</p>
-            )}
-            {post.frontmatter?.description && (
-              <p className="text-gray-700">{post.frontmatter.description}</p>
-            )}
-          </article>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -525,25 +535,14 @@ The `MarkdownContent` component renders raw HTML. The library is designed to wor
 
 ### Tailwind CSS v4 Setup
 
-The examples use Tailwind CSS v4 with OKLCH colors and the typography plugin. Here's the recommended setup:
+The CLI automatically sets up Tailwind CSS v4 with the typography plugin. The examples use Tailwind CSS v4 with OKLCH colors. Here's what the CLI configures:
 
-**Install dependencies:**
-```bash
-npm install -D tailwindcss@^4.0.0 @tailwindcss/postcss@^4.0.0 @tailwindcss/typography@^0.5.19 postcss@^8.4.32
-```
+**The CLI automatically:**
+- ✅ Installs `@tailwindcss/typography` package
+- ✅ Adds `@plugin "@tailwindcss/typography";` to your `globals.css`
+- ✅ Adds `@custom-variant dark (&:is(.dark *));` to your `globals.css`
 
-**postcss.config.mjs:**
-```js
-const config = {
-  plugins: {
-    "@tailwindcss/postcss": {},
-  },
-};
-
-export default config;
-```
-
-**globals.css:**
+**Your globals.css will include:**
 ```css
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
@@ -679,13 +678,14 @@ Check out the example Next.js apps for complete working implementations:
 
 The [single-language example](./examples/single-language) demonstrates:
 
-- ✅ Beautiful UI with shadcn/ui components
-- ✅ Tailwind CSS v4 with OKLCH colors
-- ✅ Light & dark mode support with theme toggle
+- ✅ Beautiful UI with modern Tailwind CSS styling
+- ✅ Tailwind CSS v4 with OKLCH colors and neutral color palette
+- ✅ Light & dark mode support with black background in dark mode
 - ✅ SEO optimization with structured data
 - ✅ OG image generation
 - ✅ Complete TypeScript examples
 - ✅ Responsive design
+- ✅ Enhanced typography with @tailwindcss/typography
 
 To run the single-language example:
 
@@ -704,8 +704,8 @@ The [multi-language example](./examples/multi-language) demonstrates:
 - ✅ Locale-based routing (`/[locale]/blog/[slug]`)
 - ✅ Locale-aware content organization
 - ✅ All features from the single-language example
-- ✅ Tailwind CSS v4 with OKLCH colors
-- ✅ Light & dark mode support
+- ✅ Tailwind CSS v4 with OKLCH colors and neutral color palette
+- ✅ Light & dark mode support with black background in dark mode
 
 To run the multi-language example:
 

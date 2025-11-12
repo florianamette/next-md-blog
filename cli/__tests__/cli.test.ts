@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import { parseArgs } from '../args.js';
-import { generateExamplePost } from '../templates.js';
+import { parseArgs } from '../src/args.js';
+import { generateExamplePost } from '../src/templates.js';
 
 // Mock process.argv
 const originalArgv = process.argv;

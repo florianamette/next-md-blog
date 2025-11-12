@@ -5,7 +5,7 @@ import {
   validateLocale,
   validateLocales,
   validateLocaleFolder,
-} from '../validation';
+} from '../src/validation.js';
 
 describe('validatePath', () => {
   it('should accept valid relative paths', () => {

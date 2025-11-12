@@ -15,6 +15,7 @@ export default defineConfig({
         'templates/**',
         '**/test/**',
       ],
+      include: ['src/**/*.ts'],
     },
   },
 });

@@ -1,6 +1,6 @@
 {
   "name": "@florianamette/next-md-blog-cli",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "CLI tool for initializing next-md-blog in your Next.js project",
   "type": "module",
   "main": "dist/cli.js",
@@ -13,7 +13,7 @@
     "templates"
   ],
   "scripts": {
-    "build": "tsc && cp -r templates dist/templates",
+    "build": "rm -rf dist && tsc && cp -r src/templates dist/templates",
     "dev": "tsc --watch",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -36,10 +36,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@florianamette/next-md-blog": "file:../package"
-  },
   "devDependencies": {
+    "@florianamette/next-md-blog": "file:../package",
     "@types/node": "^22.0.0",
     "@vitest/coverage-v8": "^4.0.8",
     "typescript": "^5.7.0",

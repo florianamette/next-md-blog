@@ -43,19 +43,19 @@ echo -e "${GREEN}✓ Created test directory${NC}"
 
 # Build the CLI if needed
 echo -e "${BLUE}🔨 Building CLI...${NC}"
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR/cli"
 npm run build
 echo -e "${GREEN}✓ CLI built${NC}"
 
-# Determine the correct CLI path (the CLI is compiled to dist/cli/cli.js)
-CLI_PATH="$SCRIPT_DIR/dist/cli/cli.js"
+# Return to test directory
+cd "$SCRIPT_DIR/$TEST_DIR"
+
+# Determine the correct CLI path (the CLI is compiled to cli/dist/cli.js)
+CLI_PATH="$SCRIPT_DIR/cli/dist/cli.js"
 if [ ! -f "$CLI_PATH" ]; then
-  # Fallback to dist/cli.js if dist/cli/cli.js doesn't exist
-  CLI_PATH="$SCRIPT_DIR/dist/cli.js"
-  if [ ! -f "$CLI_PATH" ]; then
-    echo -e "${YELLOW}❌ Error: CLI file not found. Please run 'npm run build' first.${NC}"
-    exit 1
-  fi
+  echo -e "${YELLOW}❌ Error: CLI file not found at $CLI_PATH${NC}"
+  echo -e "${YELLOW}   Please run 'npm run build' in the cli directory first.${NC}"
+  exit 1
 fi
 
 # Calculate relative path from test project to repo root
@@ -72,6 +72,9 @@ create_project() {
   echo -e "\n${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
   echo -e "${BLUE}📦 Creating ${PROJECT_TYPE} project...${NC}"
   echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+  
+  # Ensure we're in the test directory before creating the project
+  cd "$SCRIPT_DIR/$TEST_DIR"
   
   # Create Next.js project using create-next-app
   echo -e "${BLUE}📦 Creating Next.js project with create-next-app...${NC}"
