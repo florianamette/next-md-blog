@@ -1,7 +1,7 @@
 import React from 'react';
-import type { BlogPost, Config } from '../core/types';
-import { generateBlogPostSchema, generateBreadcrumbsSchema } from '../core/seo';
-import { getConfig } from '../core/config';
+import type { BlogPost, Config } from '../core/types.js';
+import { generateBlogPostSchema, generateBreadcrumbsSchema } from '../core/seo.js';
+import { getConfig } from '../core/config.js';
 
 /**
  * Props for the BlogPostSEO component

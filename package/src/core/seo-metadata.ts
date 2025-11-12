@@ -1,9 +1,9 @@
-import type { BlogPost, BlogPostMetadata, Config } from './types';
+import type { BlogPost, BlogPostMetadata, Config } from './types.js';
 import type { Metadata } from 'next';
-import { calculateReadingTime, calculateWordCount } from './utils';
-import { getConfig } from './config';
-import { resolveFrontmatterField, isStringArray } from './type-guards';
-import { DEFAULT_SITE_NAME, DEFAULT_LANG } from './constants';
+import { calculateReadingTime, calculateWordCount } from './utils.js';
+import { getConfig } from './config.js';
+import { resolveFrontmatterField, isStringArray } from './type-guards.js';
+import { DEFAULT_SITE_NAME, DEFAULT_LANG } from './constants.js';
 import {
   normalizeKeywords,
   getAuthorNames,
@@ -11,7 +11,7 @@ import {
   resolveDefaultAuthor,
   buildRobotsMeta,
   resolvePostUrl,
-} from './seo-utils';
+} from './seo-utils.js';
 
 /**
  * Generates comprehensive metadata for a blog post

@@ -1,4 +1,4 @@
-import type { Author } from './types';
+import type { Author } from './types.js';
 
 // Regex patterns for markdown stripping (compiled once at module level)
 const CODE_BLOCK_REGEX = /```[\s\S]*?```/g;

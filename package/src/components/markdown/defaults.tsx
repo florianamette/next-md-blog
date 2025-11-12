@@ -4,30 +4,30 @@
  */
 
 import type { Components } from 'react-markdown';
-import H1 from './h1';
-import H2 from './h2';
-import H3 from './h3';
-import H4 from './h4';
-import H5 from './h5';
-import H6 from './h6';
-import P from './p';
-import A from './a';
-import Img from './img';
-import Code from './code';
-import Pre from './pre';
-import Blockquote from './blockquote';
-import Ul from './ul';
-import Ol from './ol';
-import Li from './li';
-import Table from './table';
-import Thead from './thead';
-import Tbody from './tbody';
-import Tr from './tr';
-import Th from './th';
-import Td from './td';
-import Hr from './hr';
-import Strong from './strong';
-import Em from './em';
+import H1 from './h1.js';
+import H2 from './h2.js';
+import H3 from './h3.js';
+import H4 from './h4.js';
+import H5 from './h5.js';
+import H6 from './h6.js';
+import P from './p.js';
+import A from './a.js';
+import Img from './img.js';
+import Code from './code.js';
+import Pre from './pre.js';
+import Blockquote from './blockquote.js';
+import Ul from './ul.js';
+import Ol from './ol.js';
+import Li from './li.js';
+import Table from './table.js';
+import Thead from './thead.js';
+import Tbody from './tbody.js';
+import Tr from './tr.js';
+import Th from './th.js';
+import Td from './td.js';
+import Hr from './hr.js';
+import Strong from './strong.js';
+import Em from './em.js';
 
 /**
  * Default markdown components that will be used if no custom components are provided

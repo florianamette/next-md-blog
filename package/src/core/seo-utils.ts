@@ -1,6 +1,6 @@
-import type { BlogPost, Author } from './types';
-import { resolveAuthorFromConfig } from './utils';
-import { resolveFrontmatterField } from './type-guards';
+import type { BlogPost, Author } from './types.js';
+import { resolveAuthorFromConfig } from './utils.js';
+import { resolveFrontmatterField } from './type-guards.js';
 
 /**
  * Normalizes keywords to an array of strings

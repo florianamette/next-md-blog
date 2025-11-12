@@ -1,5 +1,5 @@
-import type { Config } from './types';
-import { DEFAULT_SITE_NAME, DEFAULT_LANG } from './constants';
+import type { Config } from './types.js';
+import { DEFAULT_SITE_NAME, DEFAULT_LANG } from './constants.js';
 
 /**
  * Default configuration

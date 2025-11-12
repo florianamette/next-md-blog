@@ -88,7 +88,7 @@ export default async function BlogsPage() {
                             {post.authors.map((author, idx) => (
                               <span key={idx}>
                                 {idx > 0 && ', '}
-                                {author.name}
+                                {typeof author === 'string' ? author : author.name}
                               </span>
                             ))}
                           </span>

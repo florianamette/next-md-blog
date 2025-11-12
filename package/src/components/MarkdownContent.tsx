@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkEmoji from 'remark-emoji';
 import type { Components } from 'react-markdown';
-import { defaultMarkdownComponents } from './markdown/defaults';
+import { defaultMarkdownComponents } from './markdown/defaults.js';
 
 /**
  * Component types that can be overridden

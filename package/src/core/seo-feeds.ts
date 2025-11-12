@@ -1,8 +1,8 @@
-import type { BlogPost, BlogPostMetadata, Config } from './types';
-import { getConfig } from './config';
-import { resolveFrontmatterField } from './type-guards';
-import { DEFAULT_SITE_NAME, RSS_POST_LIMIT } from './constants';
-import { resolvePostUrl, escapeXml, getAuthorName } from './seo-utils';
+import type { BlogPost, BlogPostMetadata, Config } from './types.js';
+import { getConfig } from './config.js';
+import { resolveFrontmatterField } from './type-guards.js';
+import { DEFAULT_SITE_NAME, RSS_POST_LIMIT } from './constants.js';
+import { resolvePostUrl, escapeXml, getAuthorName } from './seo-utils.js';
 
 /**
  * Generates sitemap XML for blog posts

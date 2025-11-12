@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { getPostsDirectory, MARKDOWN_EXTENSION, MDX_EXTENSION, SUPPORTED_EXTENSIONS, MARKDOWN_FILE_REGEX } from './constants';
-import type { BlogPost, BlogPostMetadata, GetBlogPostOptions, Config } from './types';
-import { validateSlug, validateFrontmatter, validateContent } from './validation';
-import { BlogPostNotFoundError, FileReadError, DirectoryError } from './errors';
-import { calculateReadingTime, calculateWordCount, normalizeAuthors } from './utils';
-import { getConfig } from './config';
+import { getPostsDirectory, MARKDOWN_EXTENSION, MDX_EXTENSION, SUPPORTED_EXTENSIONS, MARKDOWN_FILE_REGEX } from './constants.js';
+import type { BlogPost, BlogPostMetadata, GetBlogPostOptions, Config } from './types.js';
+import { validateSlug, validateFrontmatter, validateContent } from './validation.js';
+import { BlogPostNotFoundError, FileReadError, DirectoryError } from './errors.js';
+import { calculateReadingTime, calculateWordCount, normalizeAuthors } from './utils.js';
+import { getConfig } from './config.js';
 
 /**
  * Safely reads a file and returns its contents

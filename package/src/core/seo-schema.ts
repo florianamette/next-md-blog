@@ -1,14 +1,14 @@
-import type { BlogPost, Author, Config } from './types';
-import { calculateReadingTime, calculateWordCount } from './utils';
-import { getConfig } from './config';
-import { resolveFrontmatterField, isStringArray } from './type-guards';
-import { DEFAULT_SITE_NAME } from './constants';
+import type { BlogPost, Author, Config } from './types.js';
+import { calculateReadingTime, calculateWordCount } from './utils.js';
+import { getConfig } from './config.js';
+import { resolveFrontmatterField, isStringArray } from './type-guards.js';
+import { DEFAULT_SITE_NAME } from './constants.js';
 import {
   ensureAuthorsResolved,
   resolveDefaultAuthor,
   getAuthorNames,
   resolvePostUrl,
-} from './seo-utils';
+} from './seo-utils.js';
 
 /**
  * Generates JSON-LD structured data (Schema.org) for a blog post

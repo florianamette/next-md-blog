@@ -1,4 +1,4 @@
-import type { BlogPostFrontmatter, Author } from './types';
+import type { BlogPostFrontmatter, Author } from './types.js';
 
 /**
  * Type guard to check if a value is a non-empty string
