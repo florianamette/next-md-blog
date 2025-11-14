@@ -1,6 +1,6 @@
 {
-  "name": "@florianamette/next-md-blog",
-  "version": "1.0.0",
+  "name": "@next-md-blog/core",
+  "version": "1.0.1",
   "description": "A React library for parsing and displaying markdown blog posts in Next.js",
   "type": "module",
   "main": "dist/index.js",
@@ -38,7 +38,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/florianamette/next-mdx-blog.git"
+    "url": "https://github.com/florianamette/next-mdx-blog.git",
+    "directory": "packages/core"
   },
   "homepage": "https://github.com/florianamette/next-mdx-blog#readme",
   "bugs": {

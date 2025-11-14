@@ -1,4 +1,4 @@
-import { getAllBlogPosts } from '@florianamette/next-md-blog';
+import { getAllBlogPosts } from '@next-md-blog/core';
 import Link from 'next/link';
 import blogConfig from '@/next-md-blog.config';
 {{POSTS_DIR_OPTION}}

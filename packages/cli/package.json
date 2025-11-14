@@ -1,12 +1,12 @@
 {
-  "name": "@florianamette/next-md-blog-cli",
-  "version": "1.0.5",
+  "name": "@next-md-blog/cli",
+  "version": "1.0.0",
   "description": "CLI tool for initializing next-md-blog in your Next.js project",
   "type": "module",
   "main": "dist/cli.js",
   "bin": {
     "next-md-blog-init": "./dist/cli.js",
-    "@florianamette/next-md-blog-init": "./dist/cli.js"
+    "@next-md-blog/cli-init": "./dist/cli.js"
   },
   "files": [
     "dist",
@@ -31,17 +31,16 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/florianamette/next-mdx-blog.git",
-    "directory": "cli"
+    "directory": "packages/cli"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@florianamette/next-md-blog": "file:../package",
+    "@next-md-blog/core": "workspace:*",
     "@types/node": "^22.0.0",
     "@vitest/coverage-v8": "^4.0.8",
     "typescript": "^5.7.0",
     "vitest": "^4.0.8"
   }
 }
-

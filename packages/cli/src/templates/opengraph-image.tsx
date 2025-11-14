@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { getBlogPost } from '@florianamette/next-md-blog';
+import { getBlogPost } from '@next-md-blog/core';
 import blogConfig from '@/next-md-blog.config';
 {{POSTS_DIR_OPTION}}
 // Image metadata

@@ -43,18 +43,18 @@ echo -e "${GREEN}✓ Created test directory${NC}"
 
 # Build the CLI if needed
 echo -e "${BLUE}🔨 Building CLI...${NC}"
-cd "$SCRIPT_DIR/cli"
+cd "$SCRIPT_DIR/packages/cli"
 npm run build
 echo -e "${GREEN}✓ CLI built${NC}"
 
 # Return to test directory
 cd "$SCRIPT_DIR/$TEST_DIR"
 
-# Determine the correct CLI path (the CLI is compiled to cli/dist/cli.js)
-CLI_PATH="$SCRIPT_DIR/cli/dist/cli.js"
+# Determine the correct CLI path (the CLI is compiled to packages/cli/dist/cli.js)
+CLI_PATH="$SCRIPT_DIR/packages/cli/dist/cli.js"
 if [ ! -f "$CLI_PATH" ]; then
   echo -e "${YELLOW}❌ Error: CLI file not found at $CLI_PATH${NC}"
-  echo -e "${YELLOW}   Please run 'npm run build' in the cli directory first.${NC}"
+  echo -e "${YELLOW}   Please run 'npm run build:cli' in the root directory first.${NC}"
   exit 1
 fi
 
@@ -160,7 +160,7 @@ create_project() {
       const path = '${PROJECT_DIR}/package.json';
       const pkg = JSON.parse(fs.readFileSync(path, 'utf8'));
       if (!pkg.dependencies) pkg.dependencies = {};
-      pkg.dependencies['next-md-blog'] = 'file:${RELATIVE_PATH_TO_ROOT}';
+      pkg.dependencies['@next-md-blog/core'] = 'file:${RELATIVE_PATH_TO_ROOT}packages/core';
       fs.writeFileSync(path, JSON.stringify(pkg, null, 2) + '\n');
     "
     echo -e "${GREEN}✓ package.json updated to use local package${NC}"

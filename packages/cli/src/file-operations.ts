@@ -172,20 +172,20 @@ export function createNextJSRoutes(config: CLIConfig): void {
 }
 
 /**
- * Install @florianamette/next-md-blog package
+ * Install @next-md-blog/core package
  */
 export function installNextMdBlog(): void {
   try {
     console.log('\n--- Installing Dependencies ---\n');
-    console.log('Installing @florianamette/next-md-blog...');
-    execSync('npm install @florianamette/next-md-blog', { 
+    console.log('Installing @next-md-blog/core...');
+    execSync('npm install @next-md-blog/core', { 
       stdio: 'inherit',
       cwd: process.cwd()
     });
-    console.log('✓ Installed @florianamette/next-md-blog');
+    console.log('✓ Installed @next-md-blog/core');
   } catch (error) {
-    console.error('✗ Failed to install @florianamette/next-md-blog:', error);
-    console.log('⚠ You may need to install it manually: npm install @florianamette/next-md-blog');
+    console.error('✗ Failed to install @next-md-blog/core:', error);
+    console.log('⚠ You may need to install it manually: npm install @next-md-blog/core');
   }
 }
 

@@ -13,7 +13,7 @@ This guide will help you get started with the next-md-blog library.
 First, install the library in your Next.js project:
 
 ```bash
-npm install @florianamette/next-md-blog
+npm install @next-md-blog/core
 ```
 
 ## Initialization
@@ -21,7 +21,7 @@ npm install @florianamette/next-md-blog
 Run the initialization command:
 
 ```bash
-npx @florianamette/next-md-blog-init
+npx @next-md-blog/cli
 ```
 
 This will:

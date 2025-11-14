@@ -1,5 +1,5 @@
-import { getBlogPost, getAllBlogPosts, generateBlogPostMetadata, BlogPostSEO } from '@florianamette/next-md-blog';
-import { MarkdownContent } from '@florianamette/next-md-blog';
+import { getBlogPost, getAllBlogPosts, generateBlogPostMetadata, BlogPostSEO } from '@next-md-blog/core';
+import { MarkdownContent } from '@next-md-blog/core';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';

@@ -1,6 +1,6 @@
-# @florianamette/next-md-blog-cli
+# @next-md-blog/cli
 
-CLI tool for quickly initializing `@florianamette/next-md-blog` in your Next.js project. Automatically sets up blog routes, installs dependencies, and configures everything you need to start blogging.
+CLI tool for quickly initializing `@next-md-blog/core` in your Next.js project. Automatically sets up blog routes, installs dependencies, and configures everything you need to start blogging.
 
 ## ✨ Features
 
@@ -17,13 +17,13 @@ CLI tool for quickly initializing `@florianamette/next-md-blog` in your Next.js 
 Use directly with npx (recommended):
 
 ```bash
-npx @florianamette/next-md-blog-cli
+npx @next-md-blog/cli
 ```
 
 Or install globally:
 
 ```bash
-npm install -g @florianamette/next-md-blog-cli
+npm install -g @next-md-blog/cli
 next-md-blog-init
 ```
 
@@ -32,7 +32,7 @@ next-md-blog-init
 Run the CLI in your Next.js project root:
 
 ```bash
-npx @florianamette/next-md-blog-cli
+npx @next-md-blog/cli
 ```
 
 The CLI will:
@@ -42,7 +42,7 @@ The CLI will:
 3. ✅ Create Next.js routes for `/blog/[slug]` and `/blogs`
 4. ✅ Set up OG image using Next.js file convention (`opengraph-image.tsx`)
 5. ✅ Create `next-md-blog.config.ts` with SEO configuration
-6. ✅ **Automatically install** `@florianamette/next-md-blog`
+6. ✅ **Automatically install** `@next-md-blog/core`
 7. ✅ **Automatically install** `@tailwindcss/typography`
 8. ✅ **Automatically install** `@vercel/og` (if OG images enabled)
 9. ✅ **Automatically update** `globals.css` with typography plugin
@@ -68,7 +68,7 @@ The CLI will prompt you for configuration:
 Use flags for automated setup:
 
 ```bash
-npx @florianamette/next-md-blog-cli --non-interactive \
+npx @next-md-blog/cli --non-interactive \
   --content-dir=posts \
   --blog-route=blog \
   --blogs-route=blogs \
@@ -86,7 +86,7 @@ npx @florianamette/next-md-blog-cli --non-interactive \
 Enable multi-language support:
 
 ```bash
-npx @florianamette/next-md-blog-cli \
+npx @next-md-blog/cli \
   --i18n-enabled \
   --locales=en,fr,es \
   --locale-folder=[locale]
@@ -133,7 +133,7 @@ your-project/
 The CLI creates `next-md-blog.config.ts`:
 
 ```tsx
-import { createConfig } from '@florianamette/next-md-blog';
+import { createConfig } from '@next-md-blog/core';
 
 export default createConfig({
   siteName: 'My Blog',
@@ -199,7 +199,7 @@ MIT
 
 ## 🔗 Links
 
-- [Main Package](https://www.npmjs.com/package/@florianamette/next-md-blog)
+- [Main Package](https://www.npmjs.com/package/@next-md-blog/core)
 - [GitHub Repository](https://github.com/florianamette/next-mdx-blog)
 - [Issues](https://github.com/florianamette/next-mdx-blog/issues)
 

@@ -24,7 +24,7 @@ Write your blog posts in markdown format and save them in the `posts` folder. Ea
 Here's a code example:
 
 ```typescript
-import { getBlogPost } from '@florianamette/next-md-blog';
+import { getBlogPost } from '@next-md-blog/core';
 
 const post = await getBlogPost('welcome');
 ```

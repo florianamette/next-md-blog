@@ -1,5 +1,5 @@
-import { getBlogPost, getAllBlogPosts } from '@florianamette/next-md-blog';
-import { MarkdownContent } from '@florianamette/next-md-blog';
+import { getBlogPost, getAllBlogPosts } from '@next-md-blog/core';
+import { MarkdownContent } from '@next-md-blog/core';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import blogConfig from '@/next-md-blog.config';
 {{POSTS_DIR_OPTION}}

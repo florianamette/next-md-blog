@@ -1,4 +1,4 @@
-# @florianamette/next-md-blog
+# @next-md-blog/core
 
 A powerful React library for parsing and displaying markdown and MDX blog posts in Next.js projects. Write your blog posts in markdown or MDX format and easily display them with dynamic routes, complete SEO optimization, and beautiful Open Graph images.
 
@@ -15,7 +15,7 @@ A powerful React library for parsing and displaying markdown and MDX blog posts 
 ## 📦 Installation
 
 ```bash
-npm install @florianamette/next-md-blog
+npm install @next-md-blog/core
 ```
 
 ## 🚀 Quick Start
@@ -25,7 +25,7 @@ npm install @florianamette/next-md-blog
 The easiest way to get started is using the CLI:
 
 ```bash
-npx @florianamette/next-md-blog-cli
+npx @next-md-blog/cli
 ```
 
 This will automatically:
@@ -40,13 +40,13 @@ If you prefer manual setup:
 
 1. **Install the package:**
 ```bash
-npm install @florianamette/next-md-blog @tailwindcss/typography
+npm install @next-md-blog/core @tailwindcss/typography
 ```
 
 2. **Create a config file:**
 ```tsx
 // next-md-blog.config.ts
-import { createConfig } from '@florianamette/next-md-blog';
+import { createConfig } from '@next-md-blog/core';
 
 export default createConfig({
   siteName: 'My Blog',
@@ -60,8 +60,8 @@ export default createConfig({
 3. **Create blog routes:**
 ```tsx
 // app/blog/[slug]/page.tsx
-import { getBlogPost, getAllBlogPosts, generateBlogPostMetadata } from '@florianamette/next-md-blog';
-import { MarkdownContent } from '@florianamette/next-md-blog';
+import { getBlogPost, getAllBlogPosts, generateBlogPostMetadata } from '@next-md-blog/core';
+import { MarkdownContent } from '@next-md-blog/core';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import blogConfig from '@/next-md-blog.config';
@@ -237,6 +237,6 @@ MIT
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/florianamette/next-mdx-blog)
-- [CLI Package](https://www.npmjs.com/package/@florianamette/next-md-blog-cli)
+- [CLI Package](https://www.npmjs.com/package/@next-md-blog/cli)
 - [Issues](https://github.com/florianamette/next-mdx-blog/issues)
 

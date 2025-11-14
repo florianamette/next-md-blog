@@ -9,14 +9,14 @@ A powerful React library for parsing and displaying markdown and MDX blog posts 
 - 🔍 **SEO Optimized** - Automatic metadata generation with Open Graph and Twitter Cards
 - 🖼️ **OG Images** - Built-in OG image generation component
 - ⚡ **Type Safe** - Full TypeScript support with comprehensive types
-- 🚀 **Easy Setup** - One-command initialization with `npx @florianamette/next-md-blog-init`
+- 🚀 **Easy Setup** - One-command initialization with `npx @next-md-blog/cli`
 - 🎯 **Flexible** - Works with both App Router and Pages Router
 - 🛡️ **Robust** - Input validation, error handling, and clean code principles
 
 ## 📦 Installation
 
 ```bash
-npm install @florianamette/next-md-blog
+npm install @next-md-blog/core
 ```
 
 ## 🚀 Quick Start
@@ -26,7 +26,7 @@ npm install @florianamette/next-md-blog
 Run the initialization command in your Next.js project root:
 
 ```bash
-npx @florianamette/next-md-blog-cli
+npx @next-md-blog/cli
 ```
 
 This will:
@@ -35,7 +35,7 @@ This will:
 - ✅ Create Next.js routes for `/blog/[slug]` and `/blogs`
 - ✅ Set up OG image using Next.js file convention (`opengraph-image.tsx`)
 - ✅ Configure SEO metadata generation
-- ✅ Automatically install required packages (`@florianamette/next-md-blog`, `@tailwindcss/typography`, `@vercel/og`)
+- ✅ Automatically install required packages (`@next-md-blog/core`, `@tailwindcss/typography`, `@vercel/og`)
 - ✅ Automatically update `globals.css` with typography plugin and dark mode variant
 
 ### 2. Add your blog posts
@@ -71,7 +71,7 @@ The CLI creates a `next-md-blog.config.ts` file in your project root. Update it 
 
 ```tsx
 // next-md-blog.config.ts
-import { createConfig } from '@florianamette/next-md-blog';
+import { createConfig } from '@next-md-blog/core';
 
 export default createConfig({
   siteName: 'My Blog',
@@ -90,8 +90,8 @@ export default createConfig({
 **app/blog/[slug]/page.tsx:**
 
 ```tsx
-import { getBlogPost, getAllBlogPosts, generateBlogPostMetadata } from '@florianamette/next-md-blog';
-import { MarkdownContent } from '@florianamette/next-md-blog';
+import { getBlogPost, getAllBlogPosts, generateBlogPostMetadata } from '@next-md-blog/core';
+import { MarkdownContent } from '@next-md-blog/core';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import blogConfig from '@/next-md-blog.config';
@@ -153,7 +153,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 **app/blogs/page.tsx:**
 
 ```tsx
-import { getAllBlogPosts, generateBlogListMetadata } from '@florianamette/next-md-blog';
+import { getAllBlogPosts, generateBlogListMetadata } from '@next-md-blog/core';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import blogConfig from '@/next-md-blog.config';
@@ -242,7 +242,7 @@ The CLI creates an OG image file using Next.js file convention at `app/blog/[slu
 ```tsx
 // app/blog/[slug]/opengraph-image.tsx
 import { ImageResponse } from 'next/og';
-import { getBlogPost } from '@florianamette/next-md-blog';
+import { getBlogPost } from '@next-md-blog/core';
 
 // Image metadata
 export const alt = 'Blog Post';
@@ -339,7 +339,7 @@ export default async function Image({
 Or use the provided `OgImage` component:
 
 ```tsx
-import { OgImage } from '@florianamette/next-md-blog';
+import { OgImage } from '@next-md-blog/core';
 
 <OgImage
   title="My Blog Post"
@@ -657,7 +657,7 @@ const post = await getBlogPost('my-post', {
 The library provides custom error classes:
 
 ```tsx
-import { BlogPostNotFoundError, FileReadError } from '@florianamette/next-md-blog';
+import { BlogPostNotFoundError, FileReadError } from '@next-md-blog/core';
 
 try {
   const post = await getBlogPost('my-post');

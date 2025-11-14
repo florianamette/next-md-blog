@@ -1,11 +1,34 @@
 {
-  "name": "mdx-blog-monorepo",
+  "name": "next-md-blog-monorepo",
   "version": "1.0.0",
   "private": true,
-  "description": "Monorepo for @florianamette/next-md-blog packages",
+  "description": "Monorepo for next-md-blog packages",
   "workspaces": [
-    "package",
-    "cli"
-  ]
+    "packages/core",
+    "packages/cli"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:core": "npm run build --workspace=packages/core",
+    "build:cli": "npm run build --workspace=packages/cli",
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:core": "npm run dev --workspace=packages/core",
+    "dev:cli": "npm run dev --workspace=packages/cli",
+    "test": "npm run test --workspaces --if-present",
+    "test:core": "npm run test --workspace=packages/core",
+    "test:cli": "npm run test --workspace=packages/cli",
+    "test:watch": "npm run test:watch --workspaces --if-present",
+    "test:coverage": "npm run test:coverage --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present && rm -rf node_modules",
+    "install:all": "npm install",
+    "lint": "npm run lint --workspaces --if-present",
+    "prepare": "npm run build",
+    "update-org": "node scripts/update-org.js",
+    "publish:all": "bash scripts/publish.sh"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
 }
 

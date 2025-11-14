@@ -1,4 +1,4 @@
-import { getAllBlogPosts, generateBlogListMetadata } from '@florianamette/next-md-blog';
+import { getAllBlogPosts, generateBlogListMetadata } from '@next-md-blog/core';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import blogConfig from '@/next-md-blog.config';

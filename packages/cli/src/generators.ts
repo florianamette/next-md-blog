@@ -178,7 +178,7 @@ export function generateConfigFile(config: CLIConfig): string {
   const { seoConfig, i18n } = config;
   const defaultLang = i18n.enabled && i18n.locales.length > 0 ? i18n.locales[0] : 'en';
   
-  return `import { createConfig } from '@florianamette/next-md-blog';
+  return `import { createConfig } from '@next-md-blog/core';
 
 export default createConfig({
   siteName: '${seoConfig.siteName}',
